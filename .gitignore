@@ -1,0 +1,18 @@
+# Real config with live API key — never commit this.
+# Copy background/config.example.js to background/config.js and fill in your key.
+background/config.js
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# Packaging output
+*.zip
+*.xpi
+web-ext-artifacts/
+
+# Dependencies (if you add tooling later)
+node_modules/

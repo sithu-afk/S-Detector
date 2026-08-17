@@ -1,0 +1,74 @@
+{
+  "manifest_version": 3,
+  "name": "S_Detector",
+  "version": "0.1.0",
+  "description": "Real-time phishing site detector using Google Safe Browsing, PhishTank, OpenPhish, and local heuristics.",
+  "author": "sithu-afk",
+  "homepage_url": "https://github.com/sithu-afk/S_Detector",
+
+  "icons": {
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+
+  "permissions": [
+    "webNavigation",
+    "storage",
+    "alarms",
+    "activeTab",
+    "notifications"
+  ],
+
+  "host_permissions": [
+    "https://safebrowsing.googleapis.com/*",
+    "https://data.phishtank.com/*",
+    "https://openphish.com/*",
+    "<all_urls>"
+  ],
+
+  "background": {
+    "scripts": [
+      "background/config.js",
+      "background/heuristics.js",
+      "background/safeBrowsing.js",
+      "background/phishtankFeed.js",
+      "background/openphishFeed.js",
+      "background/background.js"
+    ]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content/warningInterstitial.js"],
+      "css": ["content/warningInterstitial.css"],
+      "run_at": "document_start"
+    }
+  ],
+
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+
+  "default_locale": "en",
+
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none';"
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "s_detector@sithu-afk.github.io",
+      "strict_min_version": "115.0"
+    }
+  }
+}
